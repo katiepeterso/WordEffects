@@ -45,6 +45,13 @@ int main(int argc, const char * argv[]) {
         NSString *canadianString = [tempString stringByAppendingFormat:@", eh?"];
         NSLog(@"%@", canadianString);
         
+        //Operation 5
+        if ([tempString hasSuffix:@"?"]) {
+            NSLog(@"I don't know.");
+        }
+        else if ([tempString hasSuffix:@"!"]) {
+            NSLog(@"Whoa, calm down.");
+        }
     }
     return 0;
 }
