@@ -52,6 +52,10 @@ int main(int argc, const char * argv[]) {
         else if ([tempString hasSuffix:@"!"]) {
             NSLog(@"Whoa, calm down.");
         }
+        
+        //Operation 6
+        NSString *noSpaces = [inputString stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+        NSLog(@"%@", noSpaces);
     }
     return 0;
 }
