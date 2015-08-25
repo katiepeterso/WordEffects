@@ -26,6 +26,9 @@ int main(int argc, const char * argv[]) {
         // print NSString object
         NSLog(@"Input was: %@", inputString);
         
+        //Remove new line from the end of inputString
+        NSString *trimmedString = [inputString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        
         //Operation 1
         NSString *uppercaseString = [inputString uppercaseString];
         NSLog(@"%@", uppercaseString);
@@ -35,21 +38,26 @@ int main(int argc, const char * argv[]) {
         NSLog(@"%@", lowercaseString);
         
         //Operation 3
-        float numericValue = [inputString floatValue];
-        NSLog(@"%f", numericValue);
- 
-      
+        NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
+        nf.numberStyle = NSNumberFormatterDecimalStyle;
+        NSNumber *numberObj = [nf numberFromString:trimmedString];
+        
+        if (numberObj) {
+            int numericValue = [inputString intValue];
+            NSLog(@"%d", numericValue);
+        } else {
+            NSLog(@"You have to input a number to use this operation.");
+        }
+        
         //Operation 4
-        NSString *tempString = [inputString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-            //The inputString is coming in with a new line at the end, so I am removing the new line before adding the canadianString
-        NSString *canadianString = [tempString stringByAppendingFormat:@", eh?"];
+                NSString *canadianString = [trimmedString stringByAppendingFormat:@", eh?"];
         NSLog(@"%@", canadianString);
         
         //Operation 5
-        if ([tempString hasSuffix:@"?"]) {
+        if ([trimmedString hasSuffix:@"?"]) {
             NSLog(@"I don't know.");
         }
-        else if ([tempString hasSuffix:@"!"]) {
+        else if ([trimmedString hasSuffix:@"!"]) {
             NSLog(@"Whoa, calm down.");
         }
         
